@@ -298,7 +298,7 @@
       text-align: center;
       border-top: 1px solid #333;
       padding-top: 12px;
-      font-size: 13px;
+      font-size: 20px;
       color: #aaa;
     }
 
@@ -405,6 +405,11 @@
       font-weight: 670;
       color: yellow;
     }
+    
+    #brands{
+      scroll-margin-top: 160px;
+    }
+
   </style>
 </head>
 <body>
@@ -412,18 +417,20 @@
   <nav>
     <h1 id="topp">AutoWorld</h1>
     <ul>
-      <li><a href="#topp">Home</a></li>
-      <li><a href="#headd">Catalogue</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#brands">Catalogue</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="warranty.html">Warranty</a></li>
+
     </ul>
   </nav>
 
-  <section class="hero">
+  <section class="hero" id="home">
     <h2>Experience Luxury on Wheels</h2>
     <p>Discover the finest selection of high-end cars, crafted to perfection and tailored to your style.</p>
   </section>
 
-  <div class="bgg" id="headd">
+  <div class="bgg" id="brands">
     <h2 class="head">Our Featured Brands</h2>
 
     <!-- ---------- Carousel viewport & track (now contains 5 brands) ---------- -->
@@ -475,7 +482,7 @@
   </div>
 
   <!-- FULL FOOTER -->
-  <footer id="contact">
+  <footer >
     <div class="footer-container">
 
       <div class="footer-about">
@@ -504,27 +511,16 @@
         <p class="BH">Sat:    : 10am - 5pm</p>
         <p class="BH">Sun      : Closed</p>
 
-        <form class="contact-form" action="#" method="POST" onsubmit="alert('Message sent! Thank you for contacting us.'); return false;">
-          <h3>Contact Form</h3>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required />
-          
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required />
-          
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="3" placeholder="Write your message here..." required></textarea>
-          
-          <button type="submit">Send</button>
-        </form>
-      </div>
+        
 
     </div>
-
+</footer>
     <div class="footer-bottom">
       <p>© 2025 AutoWorld Luxury. All rights reserved.</p>
     </div>
-  </footer>
+  <br><br><br>
+
+ 
 
   <script>
     (function () {
@@ -654,6 +650,7 @@
         if (e.key === 'ArrowRight') nextBtn.click();
       });
     })();
+    
   </script>
 </body>
 </html>
