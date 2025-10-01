@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferrari</title>
+    <style>
+          * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: darkblue;
+      background-size: cover;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .container{
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      width: 75%;
+      height: 300vh;
+      background-color: #000000;
+    }
+    img{
+      width: 380px;
+      height: 400px;
+    }
+.model-head{
+height: 100px;
+width: 100%;
+background: grey;
+
+display: flex;
+justify-content:center ;
+align-items: center;
+}
+.model-head h1{
+  color: #003399;
+}
+.models{
+      width: 100%;
+      height: 50vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 45px;
+      margin-bottom: 100px;
+}
+.model {
+  width: 400px;           
+  height: 270px;           
+  position: relative;
+  overflow: hidden;         
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.model img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+ .model-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+
+.model:hover .model-name,.model {
+  transform: translateY(0);
+opacity: 1;
+  border: 3px solid rgba(70, 68, 68, 0.7);
+}
+hr{
+      color: white;
+      background-color: white;
+      width: 100%;
+    }
+
+
+
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="https://brandeps.com/logo-download/F/Ford-logo-vector-01.svg" alt="">
+    <div class="model-head">
+<h1>Ford Cars And Models</h1>
+</div>
+
+    
+<section class="models">
+
+    <div class="model">
+
+      <img src="https://www.usnews.com/object/image/0000018c-6ea6-d7c8-a1cf-7fbf48ee0001/01-2024-ford-bronco-angular-front-jms.JPG?update-time=1702663605171&size=responsive640&format=webp" onclick="openModal('bronco')" alt="">
+      <div class="model-name">Bronco</div>
+  
+    </div>
+    <div class="model">
+      
+      <img src="https://www.mikereichenbachfordflorence.com/blogs/3601/wp-content/uploads/2024/11/2024_Ford_Ranger_Raptor_08-1024x550.jpg" onclick="openModal('ranger')" alt="">
+      <div class="model-name">Ranger</div>
+    
+    </div>
+    </section>
+
+    <section class="models">
+    <div class="model">
+     
+      <img src="https://cimg3.ibsrv.net/ibimg/hgm/1920x1080-1/100/946/2025-ford-mustang-mach-e_100946099.jpg" onclick="openModal('mache')" alt="">
+      <div class="model-name">Ford Mustang Mach-E</div>
+    
+    </div>
+    
+    <div class="model">
+  
+      <img src="https://www.bkford.com/blogs/2764/wp-content/uploads/2024/04/2023_ford_explorer_4dr-suv_king-ranch_fq_oem_1_1600.jpg" onclick="openModal('explorer')" alt="">
+      <div class="model-name">Ford Explorer</div>
+    
+    </div>
+    </section>
+
+    <section class="models">
+    <div class="model">
+     
+      <img src="https://di-sitebuilder-assets.dealerinspire.com/Ford/MLP/f150-lightning/2023/color-agate-black-metallic.jpg" onclick="openModal('f150')" alt="">
+      <div class="model-name">Ford F-150</div>
+     
+    </div>
+    <div class="model">
+  
+      <img src="https://capitalexotic.com/storage/2025/01/Most-Expensive-Ford-Cars-In-The-World-Capital-Exotic.webp " onclick="openModal('exotic')" alt="">
+      <div class="model-name">Ford Exotic</div>
+  
+    </div>
+
+  </section>
+    
+ <hr>
+</div>
+<script>
+  const carDetails = {
+  bronco: {
+    img: "https://www.usnews.com/object/image/0000018c-6ea6-d7c8-a1cf-7fbf48ee0001/01-2024-ford-bronco-angular-front-jms.JPG?update-time=1702663605171&size=responsive640&format=webp",
+    title: "Ford Bronco",
+    desc: "It was unveiled in 2022 as part of Ferrari’s Special Projects program, which makes unique cars for individual clients. The SP48 has a futuristic design with a sleeker front, hidden headlights, and sharper aerodynamics compared to the F8."
+  },
+  ranger: {
+    img: "https://www.mikereichenbachfordflorence.com/blogs/3601/wp-content/uploads/2024/11/2024_Ford_Ranger_Raptor_08-1024x550.jpg",
+    title: "Ford Ranger",
+    desc: "Ferrari's first plug-in hybrid supercar. 986 horsepower combined with cutting-edge aerodynamics."
+  },
+  mach: {
+    img: "https://cimg3.ibsrv.net/ibimg/hgm/1920x1080-1/100/946/2025-ford-mustang-mach-e_100946099.jpg",
+    title: "Ford Mustang Mach-E",
+    desc: "The Ferrari F70, also known as the LaFerrari, was a hybrid hypercar that debuted in 2013, representing a significant technological leap from the Enzo"
+  },
+  explorer: {
+    img: "https://www.bkford.com/blogs/2764/wp-content/uploads/2024/04/2023_ford_explorer_4dr-suv_king-ranch_fq_oem_1_1600.jpg",
+    title: "Ford Explorer",
+    desc: "The Ferrari F70, also known as the LaFerrari, was a hybrid hypercar that debuted in 2013, representing a significant technological leap from the Enzo"
+  },
+  f150: {
+    img: "https://di-sitebuilder-assets.dealerinspire.com/Ford/MLP/f150-lightning/2023/color-agate-black-metallic.jpg",
+    title: "Ferrari F-15 Lightning",
+    desc: "The Ferrari F70, also known as the LaFerrari, was a hybrid hypercar that debuted in 2013, representing a significant technological leap from the Enzo"
+  }
+  ,
+  exotic: {
+    img: "https://capitalexotic.com/storage/2025/01/Most-Expensive-Ford-Cars-In-The-World-Capital-Exotic.webp",
+    title: "Ford Exotin",
+    desc: "The Ferrari F70, also known as the LaFerrari, was a hybrid hypercar that debuted in 2013, representing a significant technological leap from the Enzo"
+  }
+};
+
+function openModal(car) {
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modal-img").src = carDetails[car].img;
+  document.getElementById("modal-title").innerText = carDetails[car].title;
+  document.getElementById("modal-desc").innerText = carDetails[car].desc;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Warranty Schemes</title>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+     nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: black;
+      box-shadow: 0 0 15px #e6c07baa;
+      border-radius: 0 0 12px 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #e6c07b;
+      cursor: default;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #e6c07b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #e6c07b;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .brand-list {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .brand-list li {
+      background: rgba(0, 0, 0, 0.65);
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
+    }
+
+    .brand-list li:hover {
+      background: #e6c07b;
+      color: white;
+    }
+
+    /* Popup Modal Style */
+    #details {
+      display: none;
+      position: fixed;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: black;
+      border-radius: 10px;
+      border: 2px solid gold;
+      color: gold;
+      padding: 20px;
+      width: 60%;
+      max-width: 700px;
+      z-index: 1000;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.6);
+      text-align: left;
+    }
+
+    #detail-title {
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      color: gold;
+    }
+
+    #detail-content {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    #detail-content .heading {
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: underline;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      color: gold;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      color: gold;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1 id="topp">AutoWorld</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#brands">Catalogue</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="warranty.html">Warranty</a></li>
+    </ul>
+  </nav>
+
+  <br><br><br>
+  <h1>Car Warranty & Extension Schemes</h1>
+  <ul class="brand-list">
+    <li data-brand="aston">Aston Martin</li>
+    <li data-brand="mclaren">McLaren</li>
+    <li data-brand="ferrari">Ferrari</li>
+    <li data-brand="audi">Audi</li>
+    <li data-brand="lamborghini">Lamborghini</li>
+  </ul>
+
+  <!-- Popup -->
+  <div id="details">
+    <span class="close-btn" onclick="hideDetails()">✖</span>
+    <h2 id="detail-title">Title</h2>
+    <div id="detail-content">Content goes here...</div>
+  </div>
+
+
+
+
+  <script>
+    const brandInfo = {
+      aston: {
+        title: "Aston Martin Warranty & Schemes",
+        content: `
+          <strong>Factory Warranty:</strong> 3 years, unlimited mileage (in many markets).<br>
+          <strong>Extensions / Schemes:</strong> “Pinnacle Extended Warranty” (Core, Legacy, Specials, Classic) for 12 or 24 months. <br>
+          <strong>Pre-owned / Certified:</strong> Timeless Certified Pre-Owned includes 12 months unlimited-mile warranty.<br>
+          <strong>Notes:</strong> Extended coverage may include items often excluded elsewhere (oil leaks, infotainment). Classic / heritage cars have special program. Use of genuine parts & authorized dealer required.
+        `
+      },
+      mclaren: {
+        title: "McLaren Warranty & Schemes",
+        content: `
+          <strong>Factory Warranty:</strong> 3 years, unlimited mileage.<br>
+          <strong>Extensions / Schemes:</strong> Extended Warranty / Service Contract available (until car is ~15 years old, ≤ 75,000 miles).<br>
+          <strong>Certified / CPO:</strong> CPO program may add one year / 12,000 miles (optional).<br>
+          <strong>Notes:</strong> Covers most factory-fitted mechanical & electrical components (parts & labour). Wear & tear, misuse, aftermarket parts typically excluded.
+        `
+      },
+      ferrari: {
+        title: "Ferrari Warranty & Schemes",
+        content: `
+          <strong>Factory Warranty:</strong> 3 years, unlimited mileage (in many markets).<br>
+          <strong>Extensions:</strong> Extended Manufacturer’s Warranty in 12 or 24 month increments up to year 7. <br>
+          <strong>Hybrid / EV Specific:</strong> Hybrid component warranty includes battery, electric motors, etc. Battery replacement schemes at year 8 & 16 in certain programs.<br>
+          <strong>Notes:</strong> Extended warranty gives same level of protection for covered parts. Must adhere to maintenance & usage guidelines.
+        `
+      },
+      audi: {
+        title: "Audi Warranty & Schemes",
+        content: `
+          <strong>Factory Warranty:</strong> Commonly 3 years or 60,000 miles (varies by market).<br>
+          <strong>Extensions:</strong> Audi offers Extended Warranty (Essentials / Standard / Plus) after factory period.<br>
+          <strong>Used / Certified:</strong> Approved Used Audis often come with at least 12-month warranty.<br>
+          <strong>Specials:</strong> High-voltage batteries (EVs) often have longer warranty (e.g. 8 years) for degradation. Paint & corrosion warranties also used.<br>
+          <strong>Notes:</strong> Warranty usually transferable if service schedule is followed.
+        `
+      },
+      lamborghini: {
+        title: "Lamborghini Warranty & Schemes",
+        content: `
+          <strong>Factory Warranty:</strong> 3 years, unlimited mileage (in many markets).<br>
+          <strong>Extension / Selezione:</strong> “Extended Protection” via Selezione program, warranty extensions available.<br>
+          <strong>Protection Plans:</strong> Tire & Wheel protection, accessory / component coverage for up to 7 years in some product plans.<br>
+          <strong>Notes:</strong> Eligibility for extension often depends on car age / km. Work must be done via authorized network; terms vary by market.
+        `
+      }
+    };
+
+    document.querySelectorAll('.brand-list li').forEach(li => {
+      li.addEventListener('click', () => {
+        const key = li.getAttribute('data-brand');
+        const info = brandInfo[key];
+        if (info) {
+          // Replace <strong> with styled headings
+          let formatted = info.content.replace(/<strong>(.*?)<\/strong>/g,
+            '<h3 class="heading">$1</h3>'
+          );
+          document.getElementById('detail-title').innerHTML = info.title;
+          document.getElementById('detail-content').innerHTML = formatted;
+          document.getElementById('details').style.display = 'block';
+        }
+      });
+    });
+
+    function hideDetails() {
+      document.getElementById('details').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
