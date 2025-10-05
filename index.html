@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoWorld Luxury.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+    * {margin: 0;padding: 0;box-sizing: border-box;font-family: 'Montserrat', sans-serif;}
+    html {scroll-behavior: smooth;}
+    body {
+      background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #e6c07b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0,0,0,0.65);
+      box-shadow: 0 0 15px #e6c07baa;
+      border-radius: 0 0 12px 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #e6c07b;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      transition: max-height 0.3s ease;
+    }
+    nav ul li a {
+      color: #e6c07b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {color: #ffd700;}
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #e6c07b;
+      border-radius: 2px;
+    }
+    .hero {
+      text-align: center;
+      padding: 160px 20px 120px;
+      text-shadow: 0 0 10px #000;
+    }
+    .hero h2 {font-size: 4rem;font-weight: 800;margin-bottom: 12px;}
+    .hero p {font-size: 1.3rem;max-width: 700px;margin: 0 auto;color: #f0e6b9;}
+    .bgg {
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      margin: 40px auto 80px;
+      max-width: 1200px;
+      padding: 40px 30px;
+      box-shadow: 0 0 25px #e6c07b88;
+      position: relative;
+    }
+    .head {text-align: center;margin-bottom: 40px;}
+    .head h2 {font-size: 3rem;font-weight: 800;letter-spacing: 2px;color: #ffd700;text-shadow: 0 0 15px #ffd700aa;}
+    .brands {width: 100%;margin: 0 auto;overflow: hidden;height: 220px;}
+    .brands-track {display: flex;gap: 40px;align-items: stretch;transition: transform 500ms cubic-bezier(.22,.9,.36,1);will-change: transform;}
+    .brand {
+      width: 320px;height: 220px;position: relative;border-radius: 12px;overflow: hidden;cursor: pointer;
+      box-shadow: 0 0 15px #e6c07b88;transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;background: #111;flex: 0 0 auto;
+    }
+    .brand img {width: 100%;height: 100%;object-fit: cover;display: block;transition: transform 0.3s ease;}
+    .brand:hover img {transform: scale(1.05);}
+    .brand:hover {border-color: #ffd700;box-shadow: 0 0 25px #ffd700cc;transform: translateY(-8px);}
+    .hover-bar {
+      position: absolute;bottom: 0;left: 0;width: 100%;background: rgba(0,0,0,0.75);
+      color: #ffd700;font-weight: 700;font-size: 1.2rem;text-align: center;padding: 12px 0;letter-spacing: 2px;
+    }
+    .next-btn {
+      position: absolute;top: 50%;right: 0;transform: translate(50%,-50%);
+      background: linear-gradient(180deg,#ffd700,#e6c07b);
+      border: none;width: 52px;height: 52px;border-radius: 50%;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+      font-size: 26px;cursor: pointer;display: flex;align-items: center;justify-content: center;color: #111;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;z-index: 20;
+    }
+    .next-btn:hover {transform: translate(50%,-50%) scale(1.06);}
+    .next-btn:active {transform: translate(50%,-50%) scale(.98);}
+    footer {
+      background: #0a0a0a;color: #e6c07b;padding: 40px 30px 20px;font-size: 14px;
+      box-shadow: inset 0 0 50px #000000aa;margin-top: auto;
+    }
+    .footer-container {
+      display: flex;flex-wrap: wrap;justify-content: space-between;max-width: 1200px;margin: 0 auto 20px;gap: 30px;
+    }
+    .footer-container>div {flex: 1 1 220px;min-width: 220px;}
+    .footer-container h3 {
+      margin-bottom: 16px;font-size: 20px;font-weight: 700;border-bottom: 2px solid #e6c07b;
+      padding-bottom: 8px;letter-spacing: 1px;
+    }
+    .footer-links ul {list-style: none;padding-left: 0;}
+    .footer-links ul li a {color: #e6c07b;text-decoration: none;transition: color 0.3s;}
+    .footer-links ul li a:hover {color: #ffd700;}
+    .footer-contact p {display: flex;align-items: center;gap: 8px;}
+    .social-icons {margin-top: 12px;}
+    .social-icons a {font-size: 22px;margin-right: 15px;color: #e6c07b;text-decoration: none;transition: color 0.3s;}
+    .social-icons a:hover {color: #ffd700;}
+    .footer-bottom {text-align: center;border-top: 1px solid #333;padding-top: 12px;font-size: 20px;color: #aaa;}
+    .BH {font-size: 18px;font-weight: 670;color: yellow;}
+    #brands {scroll-margin-top: 160px;}
+    @media (max-width: 900px) {
+      nav {padding: 15px 25px;}
+      .menu-toggle {display: flex;}
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: rgba(0,0,0,0.9);
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      nav ul.active {display: flex;}
+      .hero h2 {font-size: 2.8rem;}
+      .hero p {font-size: 1.1rem;}
+      .brands-track {display: grid;grid-template-columns: repeat(auto-fit,minmax(240px,1fr));gap: 20px;}
+      .brand {width: 100%;height: 200px;}
+      .brands {height: auto;}
+      .next-btn {display: none;}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1 id="topp">AutoWorld</h1>
+    <div class="menu-toggle"><span></span><span></span><span></span></div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#brands">Catalogue</a></li>
+      <li><a href="./sites/contact.html">Contact</a></li>
+      <li><a href="./sites/warranty.html">Warranty</a></li>
+      <li><a href="./sites/search.html">Search</a></li>
+    </ul>
+  </nav>
+  <section class="hero" id="home">
+    <h2>Experience Luxury on Wheels</h2>
+    <p>Discover the finest selection of high-end cars, crafted to perfection and tailored to your style.</p>
+  </section>
+  <div class="bgg" id="brands">
+    <h2 class="head">Our Featured Brands</h2>
+    <div class="brands" aria-live="polite">
+      <div class="brands-track" id="brandsTrack">
+        <a href="./pages/lambo.html"><div class="brand"><img src="https://hipfonts.com/wp-content/uploads/2022/08/Lamborghini-logo-cover.jpg" alt="Lamborghini"/><div class="hover-bar">LAMBORGHINI</div></div></a>
+        <a href="./pages/am.html"><div class="brand"><img src="https://cdn.wallpapersafari.com/22/71/8jbM2y.jpg" alt="Aston Martin"/><div class="hover-bar">ASTON MARTIN</div></div></a>
+        <a href="./pages/mcl.html"><div class="brand"><img src="https://cdn.worldvectorlogo.com/logos/mclaren.svg" alt="McLaren"/><div class="hover-bar">MCLAREN</div></div></a>
+        <a href="./pages/ferrari.html"><div class="brand"><img src="https://www.pixartprinting.co.uk/blog/wp-content/uploads/2024/03/Cover-Pixart_Ferrari.jpg" alt="Ferrari"/><div class="hover-bar">FERRARI</div></div></a>
+        <a href="./pages/audi.html"><div class="brand"><img src="https://cdn.wallpapersafari.com/49/98/Oz4IMv.jpg" alt="Audi"/><div class="hover-bar">AUDI</div></div></a>
+      </div>
+    </div>
+    <button id="nextBrandBtn" class="next-btn" aria-label="Next brand">›</button>
+  </div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>About AutoWorld</h3>
+        <p>At AutoWorld, we offer the finest luxury cars with unmatched quality and service. Drive your dream today with elegance and power.</p>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p>📍 123 Luxury Drive, Beverly Hills, CA</p>
+        <p>📞 +1 (555) 123-4567</p>
+        <p>✉️ contact@autoworld.com</p>
+        <div class="social-icons">
+          <a href="#">🔵</a><a href="#">🐦</a><a href="#">📸</a><a href="#">🔗</a>
+        </div>
+      </div>
+      <div>
+        <h3>Business Hours</h3>
+        <p class="BH">Mon - Fri: 9am - 7pm</p>
+        <p class="BH">Sat: 10am - 5pm</p>
+        <p class="BH">Sun: Closed</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 AutoWorld Luxury. All rights reserved.</p></div>
+  </footer>
+  <script>
+    const menuBtn=document.querySelector('.menu-toggle');
+    const navList=document.querySelector('nav ul');
+    menuBtn.addEventListener('click',()=>{navList.classList.toggle('active');});
+    (function(){
+      const track=document.getElementById('brandsTrack');
+      const nextBtn=document.getElementById('nextBrandBtn');
+      const brandData=[
+        {name:'LAMBORGHINI',img:'https://hipfonts.com/wp-content/uploads/2022/08/Lamborghini-logo-cover.jpg',alt:'Lamborghini',link:'./pages/lambo.html'},
+        {name:'ASTON MARTIN',img:'https://cdn.wallpapersafari.com/22/71/8jbM2y.jpg',alt:'Aston Martin',link:'./pages/am.html'},
+        {name:'MCLAREN',img:'https://cdn.worldvectorlogo.com/logos/mclaren.svg',alt:'McLaren',link:'./pages/mcl.html'},
+        {name:'FERRARI',img:'https://www.pixartprinting.co.uk/blog/wp-content/uploads/2024/03/Cover-Pixart_Ferrari.jpg',alt:'Ferrari',link:'./pages/ferrari.html'},
+        {name:'AUDI',img:'https://cdn.wallpapersafari.com/49/98/Oz4IMv.jpg',alt:'Audi',link:'./pages/audi.html'}
+      ];
+      const initialCount=track.children.length;
+      let nextIndex=initialCount%brandData.length;
+      let isAnimating=false;
+      function createBrandNode(item){
+        const a=document.createElement('a');
+        a.href=item.link;
+        const div=document.createElement('div');
+        div.className='brand';
+        const img=document.createElement('img');
+        img.src=item.img;
+        img.alt=item.alt;
+        const label=document.createElement('div');
+        label.className='hover-bar';
+        label.textContent=item.name;
+        div.appendChild(img);div.appendChild(label);a.appendChild(div);
+        return a;
+      }
+      function getGapPx(){
+        const gapStyle=getComputedStyle(track).gap;
+        const gap=gapStyle?parseFloat(gapStyle):40;
+        return isNaN(gap)?40:gap;
+      }
+      nextBtn.addEventListener('click',()=>{
+        if(isAnimating)return;
+        isAnimating=true;nextBtn.disabled=true;
+        const firstBrand=track.querySelector('.brand');
+        if(!firstBrand){isAnimating=false;nextBtn.disabled=false;return;}
+        const slideWidth=firstBrand.offsetWidth+getGapPx();
+        const brandToAppend=brandData[nextIndex%brandData.length];
+        track.appendChild(createBrandNode(brandToAppend));
+        requestAnimationFrame(()=>{
+          track.style.transition='transform 500ms cubic-bezier(.22,.9,.36,1)';
+          track.style.transform=`translateX(-${slideWidth}px)`;
+        });
+        const onTransEnd=(ev)=>{
+          if(ev.propertyName!=='transform')return;
+          track.removeEventListener('transitionend',onTransEnd);
+          const left=track.firstElementChild;
+          if(left)track.removeChild(left);
+          track.style.transition='none';
+          track.style.transform='translateX(0)';
+          void track.offsetHeight;
+          nextIndex=(nextIndex+1)%brandData.length;
+          isAnimating=false;nextBtn.disabled=false;
+        };
+        track.addEventListener('transitionend',onTransEnd);
+      });
+    })();
+  </script>
+</body>
+</html>

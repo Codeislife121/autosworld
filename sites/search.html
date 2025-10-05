@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+
+      body{
+        background-color: black;
+      }
+      
+          nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0, 0, 0, 0.65);
+      box-shadow: 0 0 15px #e6c07baa;
+      border-radius: 0 0 12px 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #e6c07b;
+      cursor: default;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #e6c07b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+   .contact-section {
+    background: url('path_to_some_background_image.jpg') center/cover no-repeat; /* optional background image */
+    background-color: #0f0f0f; /* fallback dark color */
+    padding: 80px 20px;
+    color: #f5f5f5;
+  }
+       /* searchbar */
+  /* Headings */
+#h1, #h2 {
+  text-align: center;
+  color: #e6c07b;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 30px;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+select {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid gold;
+  background-color: black;
+  color: #e6c07b;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+select:hover {
+  background-color: #111;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: black;
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.4);
+  display: none; /* initially hide table */
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid gold;
+  color: #e6c07b;
+}
+
+th {
+  background-color: #222;
+  color: #e6c07b;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #333;
+}
+
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+    <h1 id="topp">AutoWorld</h1>
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#brands">Catalogue</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+      <li><a href="./warranty.html">Warranty</a></li>
+      <li><a href="./search.html">Search </a></li>
+
+    </ul>
+  </nav>
+    <section class="searchbar">
+
+<h1 id="h1">Luxury Car Search</h1>
+  <h2 id="h2">Prices in Pakistani Rupees (PKR)</h2>
+
+  <div class="filters">
+    <select id="brandFilter">
+      <option value="">All Brands</option>
+      <option value="Aston Martin">Aston Martin</option>
+      <option value="McLaren">McLaren</option>
+      <option value="Ferrari">Ferrari</option>
+      <option value="Audi">Audi</option>
+      <option value="Lamborghini">Lamborghini</option>
+    </select>
+
+    <select id="priceFilter">
+      <option value="">All Price Ranges</option>
+      <option value="Low">Low (Below PKR 30M)</option>
+      <option value="Medium">Medium (PKR 30M – 60M)</option>
+      <option value="High">High (Above PKR 60M)</option>
+    </select>
+  </div>
+
+  <table id="carTable">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Price (PKR)</th>
+        <th>Price Range</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Car Data Rows -->
+      
+  
+  <!-- Aston Martin (6 Models) -->
+  <tr data-brand="Aston Martin" data-range="High">
+    <td>Aston Martin</td>
+    <td>DB12</td>
+    <td>80,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Aston Martin" data-range="High">
+    <td>Aston Martin</td>
+    <td>Vanquish</td>
+    <td>95,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Aston Martin" data-range="High">
+    <td>Aston Martin</td>
+    <td>Special USA</td>
+    <td>120,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Aston Martin" data-range="High">
+    <td>Aston Martin</td>
+    <td>Victor</td>
+    <td>150,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Aston Martin" data-range="Medium">
+    <td>Aston Martin</td>
+    <td>Lagonda Vision</td>
+    <td>110,000,000</td>
+    <td>Medium</td>
+  </tr>
+  <tr data-brand="Aston Martin" data-range="High">
+    <td>Aston Martin</td>
+    <td>Heraldry</td>
+    <td>85,000,000</td>
+    <td>High</td>
+  </tr>
+
+
+  <!-- McLaren (6 Models) -->
+<tr data-brand="McLaren" data-range="High">
+  <td>McLaren</td>
+  <td>720S</td>
+  <td>85,000,000</td>
+  <td>High</td>
+</tr>
+<tr data-brand="McLaren" data-range="High">
+  <td>McLaren</td>
+  <td>P1</td>
+  <td>150,000,000</td>
+  <td>High</td>
+</tr>
+<tr data-brand="McLaren" data-range="Medium">
+  <td>McLaren</td>
+  <td>M1</td>
+  <td>60,000,000</td>
+  <td>Medium</td>
+</tr>
+<tr data-brand="McLaren" data-range="High">
+  <td>McLaren</td>
+  <td>SLR</td>
+  <td>120,000,000</td>
+  <td>High</td>
+</tr>
+<tr data-brand="McLaren" data-range="High">
+  <td>McLaren</td>
+  <td>London Classic</td>
+  <td>200,000,000</td>
+  <td>High</td>
+</tr>
+<tr data-brand="McLaren" data-range="High">
+  <td>McLaren</td>
+  <td>Automotive</td>
+  <td>100,000,000</td>
+  <td>High</td>
+</tr>
+
+
+  <!-- Ferrari (6 Models) -->
+  <tr data-brand="Ferrari" data-range="High">
+    <td>Ferrari</td>
+    <td>SP48 Unica</td>
+    <td>120,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Ferrari" data-range="High">
+    <td>Ferrari</td>
+    <td>F40 (1987)</td>
+    <td>200,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Ferrari" data-range="High">
+    <td>Ferrari</td>
+    <td>SF90</td>
+    <td>160,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Ferrari" data-range="Medium">
+    <td>Ferrari</td>
+    <td>Purosangue</td>
+    <td>95,000,000</td>
+    <td>Medium</td>
+  </tr>
+  <tr data-brand="Ferrari" data-range="Medium">
+    <td>Ferrari</td>
+    <td>Vintage</td>
+    <td>70,000,000</td>
+    <td>Medium</td>
+  </tr>
+  <tr data-brand="Ferrari" data-range="High">
+    <td>Ferrari</td>
+    <td>812</td>
+    <td>130,000,000</td>
+    <td>High</td>
+  </tr>
+
+  <!-- Audi (6 Models) -->
+  <tr data-brand="Audi" data-range="Low">
+    <td>Audi</td>
+    <td>A5 Sportback</td>
+    <td>25,000,000</td>
+    <td>Low</td>
+  </tr>
+  <tr data-brand="Audi" data-range="Medium">
+    <td>Audi</td>
+    <td>A8</td>
+    <td>45,000,000</td>
+    <td>Medium</td>
+  </tr>
+  <tr data-brand="Audi" data-range="Low">
+    <td>Audi</td>
+    <td>Q4 E-Tron</td>
+    <td>18,000,000</td>
+    <td>Low</td>
+  </tr>
+  <tr data-brand="Audi" data-range="Medium">
+    <td>Audi</td>
+    <td>A7 Sportback</td>
+    <td>32,000,000</td>
+    <td>Medium</td>
+  </tr>
+  <tr data-brand="Audi" data-range="Medium">
+    <td>Audi</td>
+    <td>RS E-Tron GT</td>
+    <td>40,000,000</td>
+    <td>Medium</td>
+  </tr>
+  <tr data-brand="Audi" data-range="High">
+    <td>Audi</td>
+    <td>R8</td>
+    <td>55,000,000</td>
+    <td>High</td>
+  </tr>
+
+  <!-- Lamborghini (6 Models) -->
+  <tr data-brand="Lamborghini" data-range="High">
+    <td>Lamborghini</td>
+    <td>Revuelto</td>
+    <td>1,300,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Lamborghini" data-range="High">
+    <td>Lamborghini</td>
+    <td>Huracan</td>
+    <td>85,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Lamborghini" data-range="High">
+    <td>Lamborghini</td>
+    <td>Countach LPI 800-4</td>
+    <td>500,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Lamborghini" data-range="High">
+    <td>Lamborghini</td>
+    <td>Essenza SCV12</td>
+    <td>600,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Lamborghini" data-range="High">
+    <td>Lamborghini</td>
+    <td>Aventador</td>
+    <td>185,000,000</td>
+    <td>High</td>
+  </tr>
+  <tr data-brand="Lamborghini" data-range="Medium">
+    <td>Lamborghini</td>
+    <td>Gallardo</td>
+    <td>25,000,000</td>
+    <td>Medium</td>
+  </tr>
+</tbody>
+
+  </table>
+
+
+
+</section>
+
+
+    <script>
+    const brandFilter = document.getElementById('brandFilter');
+const priceFilter = document.getElementById('priceFilter');
+const rows = document.querySelectorAll('#carTable tbody tr');
+const table = document.getElementById('carTable');
+
+function filterCars() {
+  const selectedBrand = brandFilter.value;
+  const selectedPrice = priceFilter.value;
+
+  // Show table only if something is selected
+  if (selectedBrand || selectedPrice) {
+    table.style.display = "table";
+  } else {
+    table.style.display = "none";
+  }
+
+  rows.forEach(row => {
+    const rowBrand = row.getAttribute('data-brand');
+    const rowPriceRange = row.getAttribute('data-range');
+
+    const matchesBrand = !selectedBrand || rowBrand === selectedBrand;
+    const matchesPrice = !selectedPrice || rowPriceRange === selectedPrice;
+
+    if (matchesBrand && matchesPrice) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+
+brandFilter.addEventListener('change', filterCars);
+priceFilter.addEventListener('change', filterCars);
+
+    </script>
+</body>
+</html>

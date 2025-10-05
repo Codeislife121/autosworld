@@ -1,0 +1,404 @@
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #e6c07b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0, 0, 0, 0.65);
+      box-shadow: 0 0 15px #e6c07baa;
+      border-radius: 0 0 12px 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #e6c07b;
+      cursor: default;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #e6c07b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 160px 20px 120px;
+      text-shadow: 0 0 10px #000;
+    }
+
+    .hero h2 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #f0e6b9;
+    }
+
+    .bgg {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      margin: 40px auto 80px;
+      max-width: 1200px;
+      padding: 40px 30px;
+      box-shadow: 0 0 25px #e6c07b88;
+      position: relative; /* needed for arrow placement */
+      overflow: visible;   /* keep arrow visible outside the edge */
+    }
+
+    .head {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .head h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #ffd700;
+      text-shadow: 0 0 15px #ffd700aa;
+    }
+
+    /* ---------- Carousel styles (keeps your .brand) ---------- */
+
+    /* The viewport that hides overflowing cards and prevents .bgg expansion */
+    .brands {
+      width: 100%;
+      margin: 0 auto;
+      overflow: hidden;     /* crucial: prevents the box from expanding */
+      height: 220px;        /* fixed to match .brand height so the container doesn't grow */
+    }
+
+    /* The moving track — we slide this left/right */
+    .brands-track {
+      display: flex;
+      gap: 40px;
+      align-items: stretch;
+      transition: transform 500ms cubic-bezier(.22,.9,.36,1);
+      will-change: transform;
+    }
+
+    /* keep your .brand styling mostly intact */
+    .brand {
+      width: 320px;
+      height: 220px;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 0 15px #e6c07b88;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+      background: #111;
+      flex: 0 0 auto; /* important: do not shrink/grow */
+    }
+
+    .brand img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .brand:hover img {
+      transform: scale(1.05);
+    }
+
+    .brand:hover {
+      border-color: #ffd700;
+      box-shadow: 0 0 25px #ffd700cc;
+      transform: translateY(-8px);
+    }
+
+    .hover-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      color: #ffd700;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 12px 0;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+
+    /* Next brand arrow button — CENTERED exactly on the right edge */
+    .next-btn {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(50%, -50%); /* center the button on the right edge */
+      background: linear-gradient(180deg,#ffd700,#e6c07b);
+      border: none;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+      font-size: 26px;
+      line-height: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      z-index: 20;
+    }
+
+    .next-btn:hover { transform: translate(50%, -50%) scale(1.06); }
+    .next-btn:active { transform: translate(50%, -50%) scale(.98); }
+
+    /* keep your fade animation for other uses */
+    .fade {
+      animation: fadeIn .45s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- rest of your footer + responsive styles (untouched) ---------- */
+
+    /* FULL FOOTER */
+    footer {
+      background: #0a0a0a;
+      color: #e6c07b;
+      padding: 40px 30px 20px;
+      font-size: 14px;
+      box-shadow: inset 0 0 50px #000000aa;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto 20px;
+      gap: 30px;
+    }
+
+    .footer-container > div {
+      flex: 1 1 220px;
+      min-width: 220px;
+    }
+
+    .footer-container h3 {
+      margin-bottom: 16px;
+      font-size: 20px;
+      font-weight: 700;
+      border-bottom: 2px solid #e6c07b;
+      padding-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .footer-container p,
+    .footer-container ul,
+    .footer-container li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .footer-links ul li a {
+      color: #e6c07b;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+      color: #ffd700;
+    }
+
+    .footer-contact p {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .social-icons {
+      margin-top: 12px;
+    }
+
+    .social-icons a {
+      font-size: 22px;
+      margin-right: 15px;
+      color: #e6c07b;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #ffd700;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #333;
+      padding-top: 12px;
+      font-size: 20px;
+      color: #aaa;
+    }
+
+    /* Contact form inside footer */
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 320px;
+      margin-top: 20px;
+    }
+
+    .contact-form h3 {
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+
+    .contact-form label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 10px 14px;
+      border: 1.5px solid #e6c07b;
+      border-radius: 6px;
+      background: transparent;
+      color: #e6c07b;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #ffd700;
+      box-shadow: 0 0 6px #ffd700aa;
+      background: #1a1a1a;
+    }
+
+    .contact-form button {
+      padding: 12px;
+      background: #ffd700;
+      border: none;
+      border-radius: 8px;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #e6c07b;
+      color: #000;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-container > div {
+        min-width: 100%;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      nav {
+        padding: 15px 25px;
+      }
+
+      .hero h2 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .brand {
+        width: 90vw;
+        height: 180px;
+      }
+
+      .brands { height: 180px; } /* match mobile brand height */
+      .next-btn {
+        right: 12px;
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+      }
+    }
+
+    .BH{
+      font-size: 18px;
+      font-weight: 670;
+      color: yellow;
+    }
+    
+    #brands{
+      scroll-margin-top: 160px;
+    }
