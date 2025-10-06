@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Car Warranty Schemes</title>
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -13,11 +12,21 @@
       font-family: 'Montserrat', sans-serif;
     }
 
-
     html {
       scroll-behavior: smooth;
     }
-     nav {
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #e6c07b;
+    }
+
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -56,14 +65,41 @@
       color: #ffd700;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background:
-        linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: #e6c07b;
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #e6c07b;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 900px) {
+      nav ul {
+        position: absolute;
+        top: 75px;
+        right: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        display: none;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
     }
 
     h1 {
@@ -92,7 +128,6 @@
       color: white;
     }
 
-    /* Popup Modal Style */
     #details {
       display: none;
       position: fixed;
@@ -153,12 +188,17 @@
 <body>
   <nav>
     <h1 id="topp">AutoWorld</h1>
-    <ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul id="nav-links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="../index.html#brands">Catalogue</a></li>
       <li><a href="./contact.html">Contact</a></li>
       <li><a href="./warranty.html">Warranty</a></li>
-      <li><a href="./search.html">Search </a></li>
+      <li><a href="./search.html">Search</a></li>
     </ul>
   </nav>
 
@@ -172,17 +212,17 @@
     <li data-brand="lamborghini">Lamborghini</li>
   </ul>
 
-  <!-- Popup -->
   <div id="details">
     <span class="close-btn" onclick="hideDetails()">✖</span>
     <h2 id="detail-title">Title</h2>
     <div id="detail-content">Content goes here...</div>
   </div>
 
-
-
-
   <script>
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('active');
+    }
+
     const brandInfo = {
       aston: {
         title: "Aston Martin Warranty & Schemes",
@@ -237,10 +277,7 @@
         const key = li.getAttribute('data-brand');
         const info = brandInfo[key];
         if (info) {
-          // Replace <strong> with styled headings
-          let formatted = info.content.replace(/<strong>(.*?)<\/strong>/g,
-            '<h3 class="heading">$1</h3>'
-          );
+          let formatted = info.content.replace(/<strong>(.*?)<\/strong>/g, '<h3 class="heading">$1</h3>');
           document.getElementById('detail-title').innerHTML = info.title;
           document.getElementById('detail-content').innerHTML = formatted;
           document.getElementById('details').style.display = 'block';
