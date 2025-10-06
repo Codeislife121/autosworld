@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: rgb(207, 0, 0);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      width: 75%;
+      background-color: black;
+      padding-bottom: 80px;
+    }
+
+    img {
+      width: 400px;
+      height: 300px;
+    }
+
+    .model-head {
+      width: 100%;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 0;
+      box-shadow: 0 2px 15px rgba(255, 0, 0, 0.3);
+    }
+
+    .model-head h1 {
+      color: #e60000;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .models {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 60px;
+      margin: 80px 0;
+    }
+
+    .model {
+      width: 360px;
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .model:hover {
+      border-color: #ff1a1a;
+      transform: scale(1.05);
+    }
+
+    .model img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .model-name {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .model:hover .model-name {
+      background: rgba(255, 0, 0, 0.7);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+  position: relative;
+  background: #1b1b1b;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 850px;
+  width: 90%;
+  text-align: left;
+  color: white;
+  display: flex;
+  gap: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+    .modal-left {
+      flex: 2;
+    }
+
+    .modal-left img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .modal-right {
+      flex: 1;
+      border-left: 2px solid rgba(255, 0, 0, 0.3);
+      padding-left: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 25px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .close-btn:hover {
+      color: #ff1a1a;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .rating {
+      margin: 10px 0;
+    }
+
+    .rating-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 5px;
+    }
+
+    .star {
+      font-size: 22px;
+      color: gray;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.3s ease;
+    }
+
+    .star.active {
+      color: gold;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    hr {
+      color: white;
+      background-color: white;
+      width: 100%;
+    }
+
+    .dealers-info {
+      width: 80%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 0, 0, 0.5);
+      border-radius: 12px;
+      padding: 30px 20px;
+      margin-top: 60px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.15);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .d-h1 {
+      color: #ff3333;
+      font-size: 28px;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
+
+    .dealer-info-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px 50px;
+      width: 100%;
+      justify-items: center;
+    }
+
+    .dealer-box {
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,0,0,0.2);
+      border-radius: 10px;
+      padding: 18px 25px;
+      width: 100%;
+      max-width: 320px;
+      transition: 0.3s ease;
+    }
+
+    .dealer-box:hover {
+      background: rgba(255,0,0,0.08);
+      transform: scale(1.03);
+    }
+
+    .dealer-box h3 {
+      color: #ff6666;
+      margin-bottom: 6px;
+      font-size: 18px;
+    }
+
+    .dealer-box p {
+      color: white;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .dealers-info {
+        width: 90%;
+        padding: 20px 15px;
+      }
+      .dealer-info-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .models {
+        flex-direction: column;
+        gap: 40px;
+      }
+      .model {
+        width: 90%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="modal-left">
+        <img id="modal-img" src="" alt="Car">
+        <h2 id="modal-title"></h2>
+        <p id="modal-desc"></p>
+      </div>
+      <div class="modal-right" id="modal-ratings"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <img src="https://i.pinimg.com/736x/35/63/5c/35635cfb4598fc5f11fda95b830a0a4b.jpg" alt="">
+    <div class="model-head">
+      <h1>Audi Cars And Models</h1>
+    </div>
+
+    <div class="dealers-info">
+      <h1 class="d-h1">Dealers Information</h1>
+      <div class="dealer-info-row">
+        <div class="dealer-box">
+          <h3>Contact Number</h3>
+          <p>0332 21835371</p>
+        </div>
+        <div class="dealer-box">
+          <h3>Dealer’s Location</h3>
+          <p>ABC Street, near XYZ Area, Karachi, Pakistan</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="models">
+      <div class="model">
+        <img src="https://www.thecarexpert.co.uk/wp-content/uploads/2021/07/audi-a5-sportback-wallpaper-2133x1200-cropped.jpeg" onclick="openModal('a5')" alt="">
+        <div class="model-name">Audi A5 Sportback</div>
+      </div>
+      <div class="model">
+        <img src="https://images.hgmsites.net/lrg/2025-audi-a8-l-55-tfsi-quattro-angular-front-exterior-view_100962236_l.webp" onclick="openModal('A8')" alt="">
+        <div class="model-name">Audi A8</div>
+      </div>
+    </section>
+
+    <section class="models">
+      <div class="model">
+        <img src="https://www.motortrend.com/files/66e379cb08d7da00084fe541/3-2025-audi-q4-e-tron-front-view.jpg" onclick="openModal('q4')" alt="">
+        <div class="model-name">Audi Q4 E-Tron</div>
+      </div>
+      <div class="model">
+        <img src="https://www.topgear.com/sites/default/files/cars-car/image/2015/02/buyers_guide_-_audi_a7_sb_2014_-_front_quarter.jpg" onclick="openModal('a7')" alt="">
+        <div class="model-name">Audi A7 Sportback</div>
+      </div>
+    </section>
+
+    <section class="models">
+      <div class="model">
+        <img src="https://cdn.motor1.com/images/mgl/9m4RBp/s3/2025-audi-e-tron-gt.jpg" onclick="openModal('gt')" alt="">
+        <div class="model-name">Audi RS E-Tron GT</div>
+      </div>
+      <div class="model">
+        <img src="https://cdn.motor1.com/images/mgl/JOBB2g/s1/audi-r8-v-10-vegas-yellow.jpg" onclick="openModal('r8')" alt="">
+        <div class="model-name">Audi R8</div>
+      </div>
+    </section>
+    <hr>
+  </div>
+
+  <script>
+    const carDetails = {
+      a5: {
+        img: "https://www.thecarexpert.co.uk/wp-content/uploads/2021/07/audi-a5-sportback-wallpaper-2133x1200-cropped.jpeg",
+        title: "Audi A5 Sportback (2017–2024)",
+        price: "PKR 25,000,000",
+        desc: "A stylish and practical four-door coupé offering sporty design, refined comfort, and solid performance in Audi’s mid-size range.",
+        ratings: { Speed: 5, Acceleration: 4, Brakes: 3, Comfort: 4 }
+      },
+      A8: {
+        img: "https://images.hgmsites.net/lrg/2025-audi-a8-l-55-tfsi-quattro-angular-front-exterior-view_100962236_l.webp",
+        title: "Audi A8",
+        price: "PKR 45,000,000",
+        desc: "Audi’s flagship luxury sedan, combining top-tier technology, refined elegance, and smooth V6/V8 performance for a premium executive experience.",
+        ratings: { Speed: 1, Acceleration: 2, Brakes: 3, Comfort: 1 }
+      },
+      q4: {
+        img: "https://www.motortrend.com/files/66e379cb08d7da00084fe541/3-2025-audi-q4-e-tron-front-view.jpg",
+        title: "Audi Q4 E-Tron",
+        price: "PKR 18,000,000",
+        desc: "A fully electric compact SUV that blends Audi’s premium interior with sustainable electric performance and everyday practicality.",
+        ratings: { Speed: 4, Acceleration: 2, Brakes: 3, Comfort: 5 }
+      },
+      a7: {
+        img: "https://www.topgear.com/sites/default/files/cars-car/image/2015/02/buyers_guide_-_audi_a7_sb_2014_-_front_quarter.jpg",
+        title: "Audi A7 Sportback",
+        price: "PKR 32,000,000",
+        desc: "A luxurious five-door coupé with a sleek fastback design, offering a perfect mix of performance, technology, and sophistication.",
+        ratings: { Speed: 3, Acceleration: 4, Brakes: 3, Comfort: 2 }
+      },
+      gt: {
+        img: "https://cdn.motor1.com/images/mgl/9m4RBp/s3/2025-audi-e-tron-gt.jpg",
+        title: "Audi RS E-Tron GT",
+        price: "PKR 40,000,000",
+        desc: "A high-performance electric grand tourer, delivering breathtaking acceleration, quattro grip, and aggressive RS styling.",
+        ratings: { Speed: 1, Acceleration: 5, Brakes: 3, Comfort: 5 }
+      },
+      r8: {
+        img: "https://cdn.motor1.com/images/mgl/JOBB2g/s1/audi-r8-v-10-vegas-yellow.jpg",
+        title: "Audi R8 (Supercar – Phased Out in 2024)",
+        price: "PKR 55,000,000",
+        desc: "Audi’s iconic V10 supercar, known for its exotic performance, sharp dynamics, and unmistakable presence — a true modern classic.",
+        ratings: { Speed: 5, Acceleration: 5, Brakes: 3, Comfort: 5 }
+      }
+    };
+
+    function openModal(car) {
+      document.getElementById("modal").style.display = "flex";
+      document.getElementById("modal-img").src = carDetails[car].img;
+      document.getElementById("modal-title").innerText = carDetails[car].title;
+      document.getElementById("modal-desc").innerHTML =
+        `<strong>Price: ${carDetails[car].price}</strong><br>` +
+        carDetails[car].desc;
+
+      let ratingsHTML = "";
+      for (let key in carDetails[car].ratings) {
+        ratingsHTML += `
+          <div class="rating">
+            <div class="rating-title">${key}</div>
+            <div class="stars">
+              ${'<span class="star">&#9733;</span>'.repeat(5)}
+            </div>
+          </div>
+        `;
+      }
+      document.getElementById("modal-ratings").innerHTML = ratingsHTML;
+
+      const ratingDivs = document.querySelectorAll("#modal-ratings .rating");
+      ratingDivs.forEach((ratingDiv, i) => {
+        let stars = ratingDiv.querySelectorAll(".star");
+        let ratingValue = Object.values(carDetails[car].ratings)[i];
+        stars.forEach((star, index) => {
+          setTimeout(() => {
+            if (index < ratingValue) star.classList.add("active");
+          }, index * 300);
+        });
+      });
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
